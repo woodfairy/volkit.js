@@ -41,6 +41,7 @@ const init = _ => {
   return VOLCORE_BASE_URL => {
     console.log(`volkit.js - base URL ${VOLCORE_BASE_URL}`);
     const encrypt = (message, key) => {
+      console.log('CryptoJS in encrypt wrapper', CryptoJS);
       const encrypted = CryptoJS.AES(message, key);
       console.log(encrypted);
       return encrypted;
@@ -59,7 +60,8 @@ const init = _ => {
       encrypt: encrypt,
       test: function() {
         console.log("test");
-      }
+      },
+      crypto: CryptoJS
     }
   }
 }
