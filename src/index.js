@@ -38,17 +38,8 @@ d[k>>>24]^e[n>>>16&255]^j[g>>>8&255]^l[h&255]^c[p++],n=d[n>>>24]^e[g>>>16&255]^j
 const init = VOLCORE_BASE_URL => {
   console.log(`volkit.js - base URL ${VOLCORE_BASE_URL}`);
 
-  const encrypt = (message, key) => {
-    const encrypted = CryptoJS.AES.encrypt(message, key);
-    console.log(encrypted);
-    return encrypted;
-  }
-
-  const decrypt = (message, key) => {
-    const decrypted = CryptoJS.AES.decrypt(message, key);
-    console.log(decrypted);
-    return decrypted;
-  }
+  const encrypt = (message, key) => CryptoJS.AES.encrypt(message, key);
+  const decrypt = (message, key) => CryptoJS.AES.decrypt(message, key);
 
   const getRandomString = length => {
       const validChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@:;+-_ß';
