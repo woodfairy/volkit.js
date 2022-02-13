@@ -36,11 +36,61 @@ d[k>>>24]^e[n>>>16&255]^j[g>>>8&255]^l[h&255]^c[p++],n=d[n>>>24]^e[g>>>16&255]^j
 
 
 const init = VOLCORE_BASE_URL => {
+
   console.log(`volkit.js - base URL ${VOLCORE_BASE_URL}`);
 
   const encrypt = (message, key) => CryptoJS.AES.encrypt(message, key);
   const decrypt = (message, key) => CryptoJS.AES.decrypt(message, key);
   const decrypt2 = (message, key) => CryptoJS.AES.decrypt(message, key).toString(CryptoJS.enc.Utf8);
+
+  const createMessage = (message, key, callback) => {
+    const VOLCORE_API_ROUTE_NEW = `${VOLCORE_BASE_URL}/new`
+
+    const encrypted = encrypt(message, key);
+    var formdata = new FormData();
+    formdata.append("note", encrypted.toString());
+
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    fetchCallback(VOLCORE_API_ROUTE_NEW, requestOptions);
+  }
+
+  const checkMessage = (uuid, callback) => {
+    const VOLCORE_API_ROUTE_CHECK = `${VOLCORE_BASE_URL}/check/${uuid}`;
+
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetchCallback(VOLCORE_API_ROUTE_CHECK, callback);
+  }
+
+  const readMessage = (uuid, callback) => {
+    const VOLCORE_API_ROUTE_READ = `${VOLCORE_BASE_URL}/read/${uuid}`;
+
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetchCallback(VOLCORE_API_ROUTE_READ, requestOptions)
+  }
+
+  const fetchCallback = (url, requestOptions, callback) => {
+    fetch(url, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result);
+        if (typeof callback !== 'function') return;
+        else callback(result);
+      })
+      .catch(error => console.log('error', error));
+  }
 
   const getRandomString = length => {
       const validChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@:;+-_ß';
@@ -55,7 +105,9 @@ const init = VOLCORE_BASE_URL => {
     encrypt: encrypt,
     decrypt: decrypt,
     decrypt2: decrypt2,
-    crypto: CryptoJS
+    createMessage: createMessage,
+    checkMessage: checkMessage,
+    readMessage: readMessage
   }
 }
 
