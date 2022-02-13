@@ -1,4 +1,4 @@
-require('../bower_components/crypto.js/components/aes');
+const CryptoJS = require('../bower_components/crypto.js/components/aes');
 
 const init = VOLCORE_BASE_URL => {
 
@@ -22,7 +22,8 @@ const init = VOLCORE_BASE_URL => {
     encrypt: encrypt,
     test: function() {
       console.log("test");
-    }
+    },
+    crypto: CryptoJS
   }
 }
 
