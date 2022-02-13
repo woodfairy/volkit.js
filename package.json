@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com-woodfairy:woodfairy/volkit.js.git"
+    "url": "git+ssh://git@github.com/woodfairy/volkit.js.git"
   },
   "keywords": [
     "volnote",
