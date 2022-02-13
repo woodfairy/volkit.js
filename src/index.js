@@ -1,4 +1,13 @@
+import CryptoJS from './../bower_components/crypto.js/components/aes';
+
 const volkit = VOLCORE_BASE_URL => {
+  console.log(`volkit.js - base URL ${VOLCORE_BASE_URL}`);
+  const encrypt = (message, key) => {
+    const encrypted = CryptoJS.AES(message, key);
+    console.log(encrypted);
+    return encrypted;
+  }
+
   const getRandomString = length => {
       const validChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@:;+-_ß';
       let arr = new Uint16Array(length);
@@ -7,10 +16,10 @@ const volkit = VOLCORE_BASE_URL => {
       return String.fromCharCode.apply(null, arr);
   }
 
-  // Return what others can use
   return {
-    getRandomString: getRandomString
+    getRandomString: getRandomString,
+    encrypt: encrypt
   }
 }
 
-exports.init = volkit
+export const init = volkit
