@@ -1,6 +1,6 @@
 {
   "name": "volkit.js",
-  "version": "0.0.2-dev16",
+  "version": "0.0.2-dev17",
   "description": "API wrapper for volCORE",
   "main": "dist/volkit.js",
   "scripts": {
