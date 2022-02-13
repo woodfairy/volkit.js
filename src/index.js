@@ -56,7 +56,7 @@ const init = VOLCORE_BASE_URL => {
       redirect: 'follow'
     };
 
-    fetchCallback(VOLCORE_API_ROUTE_NEW, requestOptions);
+    fetchCallback(VOLCORE_API_ROUTE_NEW, requestOptions, callback);
   }
 
   const checkMessage = (uuid, callback) => {
@@ -67,7 +67,7 @@ const init = VOLCORE_BASE_URL => {
       redirect: 'follow'
     };
     
-    fetchCallback(VOLCORE_API_ROUTE_CHECK, callback);
+    fetchCallback(VOLCORE_API_ROUTE_CHECK, requestOptions, callback);
   }
 
   const readMessage = (uuid, callback) => {
@@ -78,7 +78,7 @@ const init = VOLCORE_BASE_URL => {
       redirect: 'follow'
     };
     
-    fetchCallback(VOLCORE_API_ROUTE_READ, requestOptions)
+    fetchCallback(VOLCORE_API_ROUTE_READ, requestOptions, callback)
   }
 
   const fetchCallback = (url, requestOptions, callback) => {
