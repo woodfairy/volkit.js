@@ -19,7 +19,10 @@ const init = VOLCORE_BASE_URL => {
 
   return {
     getRandomString: getRandomString,
-    encrypt: encrypt
+    encrypt: encrypt,
+    test: function() {
+      console.log("test");
+    }
   }
 }
 
