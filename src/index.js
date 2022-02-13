@@ -1,10 +1,10 @@
-import { AES } from '../bower_components/crypto.js/components/aes';
+require('../bower_components/crypto.js/components/aes');
 
 const init = VOLCORE_BASE_URL => {
 
   console.log(`volkit.js - base URL ${VOLCORE_BASE_URL}`);
   const encrypt = (message, key) => {
-    const encrypted = AES(message, key);
+    const encrypted = CryptoJS.AES(message, key);
     console.log(encrypted);
     return encrypted;
   }
@@ -26,4 +26,4 @@ const init = VOLCORE_BASE_URL => {
   }
 }
 
-export default init
+module.exports = init
