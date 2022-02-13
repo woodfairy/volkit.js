@@ -85,8 +85,6 @@ const init = VOLCORE_BASE_URL => {
     fetch(url, requestOptions)
       .then(response => response.text())
       .then(result => {
-        console.log(result);
-        console.log("CALLBACK", typeof callback, callback);
         if (typeof callback == 'function') {
             callback(result);
         }
