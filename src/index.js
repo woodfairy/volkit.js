@@ -86,8 +86,10 @@ const init = VOLCORE_BASE_URL => {
       .then(response => response.text())
       .then(result => {
         console.log(result);
-        if (typeof callback !== 'function') return;
-        else callback(result);
+        console.log("CALLBACK", typeof callback, callback);
+        if (typeof callback == 'function') {
+            callback(result);
+        }
       })
       .catch(error => console.log('error', error));
   }
